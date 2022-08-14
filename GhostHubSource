@@ -2,9 +2,9 @@ _G.key = "FreeTrial1"
 local HWIDTable = loadstring(game:HttpGet("https://raw.githubusercontent.com/FarmerWestremade/whitelistting/main/whitelistkey"))()
 local HWID = game.RbxAnalyticsService:GetClientId()
 for i,v in pairs(HWIDTable) do
-    if v == HWID or _G.key == "FreeTrial" then
+    if v == HWID or _G.key == "FreeTrial1" then
             if game.PlaceId == 4779613061 then --South London 2
-            local theme = "GrapeTheme"
+            local theme = "DarkTheme"
             local Lbrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
             local Window = Lbrary.CreateLib("Market Hub V.0.1",theme)
             local player = game.Players.LocalPlayer
