@@ -1,0 +1,268 @@
+_G.key = "FreeTrial1"
+local HWIDTable = loadstring(game:HttpGet("https://raw.githubusercontent.com/FarmerWestremade/whitelistting/main/whitelistkey"))()
+local HWID = game.RbxAnalyticsService:GetClientId()
+for i,v in pairs(HWIDTable) do
+    if v == HWID or _G.key == "FreeTrial" then
+            if game.PlaceId == 4779613061 then --South London 2
+            local theme = "GrapeTheme"
+            local Lbrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+            local Window = Lbrary.CreateLib("Market Hub V.0.1",theme)
+            local player = game.Players.LocalPlayer
+            game:service'RunService'.Stepped:Connect(function()
+            if _G.Noclip == true then
+                    player.Character.Head.CanCollide = false
+                    player.Character.LowerTorso.CanCollide = false
+                    player.Character.UpperTorso.CanCollide = false
+                    player.Character.HumanoidRootPart.CanCollide = false
+                end
+            end)
+            local healthbefore = 100
+            game:service'RunService'.Stepped:Connect(function()
+            if _G.Saftey == true then
+                    
+                    if healthbefore > player.Character.Humanoid.Health then
+                        healthbefore = player.Character.Humanoid.Health
+                        game.Players.localPlayer.Character.HumanoidRootPart.CFrame = workspace.Teleports["Sports Shop"].CFrame
+                        wait(0.25)
+                        game.ReplicatedStorage.DoorService:FireServer("Sports Shop")
+                    end
+                    healthbefore = player.Character.Humanoid.Health
+                end
+            end)
+
+            local Main = Window:NewTab("Home")
+            local MainSection = Main:NewSection("Home")
+
+            MainSection:NewButton("Infinite Stats","Lets you run forever.",function()
+                spawn(function()
+                    while wait() do
+                        game.Players.LocalPlayer:waitForChild("Valuestats").Stamina.Value = 100
+                    end
+                end)
+            end)
+            MainSection:NewButton("Anti Camera Shake","Lets you turn off camera shake when running.",function()
+                spawn(function()
+                    while wait() do
+                        game.Players.LocalPlayer.PlayerGui.Camera_Bob.Disabled = true
+                    end
+                end)
+            end)
+            MainSection:NewToggle("High Hips","Increase High Hips.",function(state)
+                if state == true then
+                    game.Players.LocalPlayer.Character.Humanoid.HipHeight = 12
+                else
+                    game.Players.LocalPlayer.Character.Humanoid.HipHeight = 2
+                end
+            end)
+            MainSection:NewToggle("Noclip","Lets you walk through walls.",function(state)
+                _G.Noclip = state
+            end)
+            MainSection:NewToggle("Safe Mode","Teleport you to saftey when attacked.",function(state)
+                --healthbefore = player.Character.Humanoid.Health
+                _G.Saftey = state
+            end)
+            MainSection:NewButton("Spectate","Spectate all the players in the game with more functions.",function(state)
+                local Window = Lbrary.CreateLib("Spectate Market Hub","DarkTheme")
+                local Main = Window:NewTab("View")
+                local MainSection = Main:NewSection("View")
+                local Tp = Window:NewTab("Teleport")
+                local TPSec = Tp:NewSection("Teleport to")
+                local Kill = Window:NewTab("Kill")
+                local KillSec = Kill:NewSection("Kill")
+                for i,v in pairs(game.Players:GetChildren()) do
+                    MainSection:NewButton(v.Name,"View the player",function()
+                        if workspace.CurrentCamera.CameraSubject == player.Character.Humanoid then
+                            workspace.CurrentCamera.CameraSubject = v.Character.Humanoid
+                        else
+                            workspace.CurrentCamera.CameraSubject = player.Character.Humanoid
+                            
+                        end
+                    end)
+                end
+                for i,v in pairs(game.Players:GetChildren()) do
+                    TPSec:NewButton(v.Name,"Teleport to the player",function()
+                        player.Character.HumanoidRootPart.CFrame = workspace.Teleports["Apartments"].CFrame
+                        wait(0.26)
+                        game.ReplicatedStorage.DoorService:FireServer("Apartments")
+                        local lastpos = player.Character.HumanoidRootPart.Position
+                        while wait() do
+                            if (player.Character.HumanoidRootPart.Position-lastpos).Magnitude > 20 then
+                            print("bigger")
+                            break
+                            end
+                            lastpos = player.Character.HumanoidRootPart.Position
+                        end
+                        player.Character:MoveTo(v.Character.HumanoidRootPart.Position)
+                    end)
+                end
+                for i,v in pairs(game.Players:GetChildren()) do
+                    TPSec:NewButton(v.Name,"Teleport to the player",function()
+                        player.Character.HumanoidRootPart.CFrame = workspace.Teleports["Apartments"].CFrame
+                        wait(0.26)
+                        game.ReplicatedStorage.DoorService:FireServer("Apartments")
+                        local lastpos = player.Character.HumanoidRootPart.Position
+                        while wait() do
+                            if (player.Character.HumanoidRootPart.Position-lastpos).Magnitude > 20 then
+                            print("bigger")
+                            break
+                            end
+                            lastpos = player.Character.HumanoidRootPart.Position
+                        end
+                        wait(0.05)
+                        player.Character:MoveTo(v.Character.HumanoidRootPart.Position)
+                    end)
+                end
+                for i,v in pairs(game.Players:GetChildren()) do
+                    KillSec:NewButton(v.Name,"Kill this player (Fists required)",function()
+                        local found = false
+                        if player.Backpack:FindFirstChild("Fist") then
+                            player.Character.Humanoid:UnequipTools()
+                            player.Backpack:FindFirstChild("Fist").Parent = player.Character
+                            found = true
+                        elseif player.Character:FindFirstChild("Fist") then
+                            found = true
+                        end
+                        if found then
+                            player.Character.HumanoidRootPart.CFrame = workspace.Teleports["Apartments"].CFrame
+                        wait(0.26)
+                        game.ReplicatedStorage.DoorService:FireServer("Apartments")
+                        local lastpos = player.Character.HumanoidRootPart.Position
+                        while wait() do
+                            if (player.Character.HumanoidRootPart.Position-lastpos).Magnitude > 20 then
+                            print("bigger")
+                            break
+                            end
+                            lastpos = player.Character.HumanoidRootPart.Position
+                        end
+                        wait(0.05)
+                        player.Character:MoveTo(v.Character.HumanoidRootPart.Position)
+                        if player.Backpack:FindFirstChild("Fist") then
+                            player.Character.Humanoid:UnequipTools()
+                            player.Backpack:FindFirstChild("Fist").Parent = player.Character
+                            found = true
+                        elseif player.Character:FindFirstChild("Fist") then
+                            found = true
+                        end
+                        local counti = 1
+                        repeat 
+                        counti = counti+1
+                        player.Character.Fist.LocalScript.Script.e:FireServer(
+                        v.Character.Humanoid,
+                        10,
+                        false,
+                        v.Character.Head,
+                        true,
+                        v.Character.HumanoidRootPart.Position
+                        )
+                        wait(0.05)
+                        player.Character:MoveTo(v.Character.HumanoidRootPart.Position)
+                        until v.Character.Humanoid.Health <= 27 or counti == 100
+                        end
+                        
+                    end)
+                end
+            end)
+            MainSection:NewSlider("Walk Speed","Change your walk speed.",45,16,function(s)
+                player.Character.Humanoid.WalkSpeed = 199
+            end)
+            MainSection:NewSlider("Jump Power","Change your walk jump power.",100,50,function(s)
+            player.Character.Humanoid.JumpPower = s
+            end)
+            local TS = Game:GetService("TweenService")
+            local TeleportsWindow = Window:NewTab("Fast Teleports")
+            local Teleports = TeleportsWindow:NewSection("Fast Teleports (crashable)")
+
+            Teleports:NewButton("Sports Shop","Teleport to sports shop.",function()
+                game.Players.localPlayer.Character.HumanoidRootPart.CFrame = workspace.Teleports["Sports Shop"].CFrame
+                wait(0.25)
+                game.ReplicatedStorage.DoorService:FireServer("Sports Shop")
+            end)
+
+            Teleports:NewButton("Apartments","Teleport to apartment 1.",function()
+                
+                game.Players.localPlayer.Character.HumanoidRootPart.CFrame = workspace.Teleports["Apartments"].CFrame
+                wait(0.26)
+                game.ReplicatedStorage.DoorService:FireServer("Apartments")
+
+            end)
+
+
+            Teleports:NewButton("Premium Apartments","Teleport to apartment 2.",function()
+
+                game.Players.localPlayer.Character.HumanoidRootPart.CFrame = workspace.Teleports["Premium Apartments"].CFrame
+                wait(0.26)
+                game.ReplicatedStorage.DoorService:FireServer("Premium Apartments")
+
+            end)
+
+            Teleports:NewButton("Exclusive Apartments","Teleport to apartment 3.",function()
+                
+                game.Players.localPlayer.Character.HumanoidRootPart.CFrame = workspace.Teleports["Exclusive Apartments"].CFrame
+                wait(0.26)
+                game.ReplicatedStorage.DoorService:FireServer("Exclusive Apartments")
+
+            end)
+
+            local CombatWindow = Window:NewTab("Combat")
+            local Combat = CombatWindow:NewSection("Combat")
+            Combat:NewButton("ESP","Highlight all players.",function()
+
+            end)
+            Combat:NewButton("Buy Food","Buy Food.",function()
+
+            game.ReplicatedStorage.gorillaservice:FireServer("Fridge")
+
+            end)
+            Combat:NewToggle("Big Head","Make everyones head bigger, making it easier to hit.",function(state)
+                _G.Bighead = state
+                spawn(function()
+                    if state then
+                        while wait(1) do
+                            if _G.Bighead == false then
+                                break
+                            end
+                            pcall(function()
+                                for i,v in pairs(game.Players:GetChildren()) do
+                                    if v ~= game.Players.LocalPlayer then
+                                        v.Character.Head.Size = Vector3.new(3,3,3)
+                                        v.Character.Head.Transparency = 0.5
+                                    end
+                                end
+                            end)
+                        end
+                    else
+                        while wait(1) do
+                            if _G.Bighead == true then
+                                break
+                            end
+                            pcall(function()
+                                for i,v in pairs(game.Players:GetChildren()) do
+                                    if v ~= game.Players.LocalPlayer then
+                                        v.Character.Head.Size = Vector3.new(2,1,1)
+                                        v.Character.Head.Transparency = 0
+                                    end
+                                end
+                            end)	
+                        end
+                    end
+                end)
+            end)
+
+            local OtherWindow = Window:NewTab("Other")
+            local Other = OtherWindow:NewSection("Other")
+            Other:NewButton("Chat Spy","See all chat.",function()
+            end)
+            Other:NewButton("ESP","See other players.",function()
+            end)
+
+            local folder = Instance.new("Folder",workspace)
+            for i,v in pairs(game.ReplicatedStorage.Places:GetChildren()) do
+                v:clone().Parent = folder
+            
+            end
+        end
+    else
+        game.Players.LocalPlayer:Kick("Not whitelisted, reported to GhostHub Developers")
+    end
+end
+
